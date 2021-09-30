@@ -2,7 +2,8 @@ import http from "http";
 
 const port = 3000;
 
-const server = http.createServer((_, res) => {
+const server = http.createServer((req, res) => {
+  console.log(req);
   res.statusCode = 200; // Status code = OK
 
   // Server announces to the browser what type of stuff is in this response - HTML
