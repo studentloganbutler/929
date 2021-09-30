@@ -12,6 +12,7 @@ const server = http.createServer((_, res) => {
   res.setHeader("Content-Type", "text/html");
   res.end("<h1>Goodbye World</h1>");
   count += 1;
+  console.log("Incrementing");
 
   fs.writeFile("count.log", String(count));
 });
