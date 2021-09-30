@@ -4,16 +4,14 @@ import { promises as fs } from "fs";
 const app = express();
 
 app.get("/:page", (req, res) => {
-  switch (req.params.page) {
-    case "hello":
-      res.end("Hello");
-      break;
-    case "bye":
-      res.end("bye");
-      break;
-    default:
-      res.end("404");
-  }
+  fs.readFile(`${req.params.page}.html`, "utf-8")
+    .then((contents) => {
+      res.end(contents);
+    })
+    .catch(() => {
+      res.statusCode = 404;
+      res.end("404!");
+    });
 });
 
 app.listen(3000, () => {
