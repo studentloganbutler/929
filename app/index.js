@@ -3,11 +3,10 @@ import { promises as fs } from "fs";
 
 const app = express();
 
-app.get("/:page", (req, res) => {
-  console.log(req.query.name, "says hello");
-  fs.readFile(`${req.params.page}.html`, "utf-8")
+app.get("/", (req, res) => {
+  fs.readFile(`${req.params.page}.json`, "utf-8")
     .then((contents) => {
-      res.end(contents);
+      res.json(contents);
     })
     .catch(() => {
       res.statusCode = 404;
